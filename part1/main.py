@@ -24,7 +24,40 @@ plot_images(train_x[0:20, :])
 
 # TODO: first fill out functions in linear_regression.py, otherwise the functions below will not work
 
+def closed_form(X, Y, lambda_factor):
+    """
+    Computes the closed form solution of linear regression with L2 regularization
 
+    Args:
+        X - (n, d + 1) NumPy array (n datapoints each with d features plus the bias feature in the first dimension)
+        Y - (n, ) NumPy array containing the labels (a number from 0-9) for each
+            data point
+        lambda_factor - the regularization constant (scalar)
+    Returns:
+        theta - (d + 1, ) NumPy array containing the weights of linear regression. Note that theta[0]
+        represents the y-axis intercept of the model and therefore X[0] = 1
+    """
+    # YOUR CODE HERE
+    # Get dimensions
+    n, d_plus_1 = X.shape
+    
+    # Create identity matrix of size d+1 × d+1
+    identity = np.eye(d_plus_1)
+    
+    # Calculate (X^T X + λI)
+    XTX_lambda = np.dot(X.T, X) + lambda_factor * identity
+    
+    # Calculate inverse of (X^T X + λI)
+    inverse = np.linalg.inv(XTX_lambda)
+    
+    # Calculate X^T Y
+    XTY = np.dot(X.T, Y)
+    
+    # Calculate the final theta: (X^T X + λI)^(-1) X^T Y
+    theta = np.dot(inverse, XTY)
+    
+    return theta
+    
 def run_linear_regression_on_MNIST(lambda_factor=1):
     """
     Trains linear regression, classifies test data, computes test error on test set
