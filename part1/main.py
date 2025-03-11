@@ -58,7 +58,7 @@ def closed_form(X, Y, lambda_factor):
     
     return theta
     
-def run_linear_regression_on_MNIST(lambda_factor=0.1):
+def run_linear_regression_on_MNIST(lambda_factor=0.01):
     """
     Trains linear regression, classifies test data, computes test error on test set
 
@@ -74,7 +74,7 @@ def run_linear_regression_on_MNIST(lambda_factor=0.1):
 
 
 # Don't run this until the relevant functions in linear_regression.py have been fully implemented.
-print('Linear Regression test_error =', run_linear_regression_on_MNIST(lambda_factor=0.1))
+print('Linear Regression test_error =', run_linear_regression_on_MNIST(lambda_factor=0.01))
 
 
 #######################################################################
