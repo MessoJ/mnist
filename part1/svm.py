@@ -15,7 +15,13 @@ def one_vs_rest_svm(train_x, train_y, test_x):
     Returns:
         pred_test_y - (m,) NumPy array containing the labels (0 or 1) for each test data point
     """
-    raise NotImplementedError
+    clf = LinearSVC(random_state=0, C=0.1)
+    clf.fit(train_x, train_y)
+    
+    # Predict labels for test data
+    pred_test_y = clf.predict(test_x)
+    
+    return pred_test_y
 
 
 def multi_class_svm(train_x, train_y, test_x):
