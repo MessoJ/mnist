@@ -16,7 +16,14 @@ def project_onto_PC(X, pcs, n_components, feature_means):
     #       of the eigenvectors returned by principal_components().
     #       Note that each eigenvector is already be a unit-vector,
     #       so the projection may be done using matrix multiplication.
-    raise NotImplementedError
+    (X_row, X_col) = X.shape
+    pcs1 = np.transpose(pcs)
+    pcs2 = pcs1[0:n_components]
+    centered_X = np.zeros((X_row, X_col))
+    for i in range(X_row):
+        centered_X[i] = X[i] - feature_means
+    res = np.matmul(centered_X, np.transpose(pcs2))
+    return res
 
 
 ### Functions which are already complete, for you to use ###
